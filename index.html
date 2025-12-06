@@ -3,67 +3,96 @@
 <head>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width,initial-scale=1" />
-<title>León vs Impala — Simulador</title>
+<title>León vs Impala — Simulador Q-Learning</title>
 <link rel="stylesheet" href="css/styles.css">
 </head>
 
 <body>
 
 <header>
-    <h1>Simulador: León aprende a cazar un Impala</h1>
-    <p class="subtitle">Visualiza la cacería, entrena al león y revisa su base de conocimiento (Q-table)</p>
+    <h1>Simulador: León aprende a cazar un Impala</h1>
+    <p class="subtitle">Visualiza la cacería, entrena al león y revisa su base de conocimiento (Q-table)</p>
 </header>
 
 <main class="layout">
 
-    <!-- PANEL IZQUIERDO (canvas + controles) -->
-    <section class="left">
+        <section class="left">
 
-        <canvas id="board" width="520" height="520"></canvas>
+        <canvas id="board" width="520" height="520"></canvas>
 
-        <div class="controls">
+        <div class="controls">
 
-            <label>Posición inicial del león:
-                <select id="startPos">
-                    <option value="1">1 (N)</option>
-                    <option value="2">2 (NE)</option>
-                    <option value="3">3 (E)</option>
-                    <option value="4">4 (SE)</option>
-                    <option value="5">5 (S)</option>
-                    <option value="6">6 (SW)</option>
-                    <option value="7">7 (W)</option>
-                    <option value="8">8 (NW)</option>
-                    <option value="rand" selected>Aleatoria</option>
-                </select>
-            </label>
+            <label>Posición inicial del león:
+                <select id="startPos">
+                    <option value="1">1 (N)</option>
+                    <option value="2">2 (NE)</option>
+                    <option value="3">3 (E)</option>
+                    <option value="4">4 (SE)</option>
+                    <option value="5">5 (S)</option>
+                    <option value="6">6 (SW)</option>
+                    <option value="7">7 (W)</option>
+                    <option value="8">8 (NW)</option>
+                    <option value="rand" selected>Aleatoria</option>
+                </select>
+            </label>
 
-            <label>Modo del Impala:
-                <select id="impalaMode">
-                    <option value="aleatorio" selected>Aleatorio</option>
-                    <option value="programado">Programado (secuencia)</option>
-                </select>
-            </label>
+            <label>Modo del Impala:
+                <select id="impalaMode">
+                    <option value="aleatorio" selected>Aleatorio</option>
+                    <option value="programado">Programado (secuencia)</option>
+                </select>
+            </label>
 
-            <label id="progLabel" style="display:none">
-                Secuencia (coma separada):
-                <input id="progSeq" placeholder="ver_frente,ver_izq,beber,...">
-            </label>
+            <label id="progLabel" style="display:none">
+                Secuencia (coma separada):
+                <input id="progSeq" placeholder="ver_frente,ver_izq,beber,...">
+            </label>
 
-            <div class="btnrow">
-                <button id="btnReset">Reset</button>
-                <button id="btnStep">Siguiente T</button>
-                <button id="btnRun">Ejecutar (hasta terminar)</button>
-                <button id="btnTrain">Entrenar x1000</button>
-                <button id="btnStopTrain" style="display:none">Detener entrenamiento</button>
-            </div>
+            <div class="btnrow">
+                <button id="btnReset">Reset</button>
+                <button id="btnStep">Siguiente T</button>
+                <button id="btnRun">Ejecutar (hasta terminar)</button>
+                <button id="btnTrain">Entrenar x1000</button>
+                <button id="btnStopTrain" style="display:none">Detener entrenamiento</button>
+            </div>
 
+        </div>
+
+    </section>
+    
+    <section class="right">
+
+        <h2>📊 Estado Actual</h2>
+        <div class="stats">
+            <p>Turno: <span id="turn">--</span></p>
+            <p>Estado: <span id="status">--</span></p>
+            <p>Acción Impala anterior: <span id="lastImpala">--</span></p>
+            <p>Acción León anterior: <span id="lastLion">--</span></p>
         </div>
+
+        <hr>
+
+        <h2>🧠 Base de Conocimiento (Q-Table)</h2>
+        <div class="kbControls">
+            <button id="btnShowKB">Mostrar/Actualizar Q-Table</button>
+            <button id="btnExplain">Explicar Última Decisión</button>
+        </div>
+        <div class="kbControls">
+            <button id="btnSaveKB">Guardar Q-Table (JSON)</button>
+            <button id="btnLoadKB">Cargar Q-Table (JSON)</button>
+            <input type="file" id="kbFile" style="display:none">
+        </div>
+        <pre id="kbView" class="q-table-display"></pre>
+
+        <hr>
+        
+        <h2>📜 Registro de Eventos (Log)</h2>
+        <div id="log" class="log-area"></div>
 
     </section>
 
 </main>
 
-<!-- Scripts -->
 <script src="js/env.js"></script>
 <script src="js/impala.js"></script>
 <script src="js/leon.js"></script>
