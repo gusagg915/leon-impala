@@ -1,80 +1,76 @@
 <!doctype html>
 <html lang="es">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>León vs Impala — Simulador</title>
-  <link rel="stylesheet" href="css/styles.css">
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>León vs Impala — Simulador</title>
+<link rel="stylesheet" href="css/styles.css">
 </head>
+
 <body>
-  <header>
+
+<header>
     <h1>Simulador: León aprende a cazar un Impala</h1>
-    <p class="subtitle">Visualiza la cacería, entrena al león y revisa su base de conocimiento.</p>
-  </header>
+    <p class="subtitle">Visualiza la cacería, entrena al león y revisa su base de conocimiento (Q-table)</p>
+</header>
 
-  <main class="layout">
+<main class="layout">
+
+    <!-- PANEL IZQUIERDO (canvas + controles) -->
     <section class="left">
-      <canvas id="board" width="520" height="520"></canvas>
 
-      <div class="controls">
-        <label>Posición inicial del león:
-          <select id="startPos">
-            <option value="1">1 (N)</option>
-            <option value="2">2 (NE)</option>
-            <option value="3">3 (E)</option>
-            <option value="4">4 (SE)</option>
-            <option value="5">5 (S)</option>
-            <option value="6">6 (SW)</option>
-            <option value="7">7 (W)</option>
-            <option value="8">8 (NW)</option>
-            <option value="rand" selected>Aleatoria</option>
-          </select>
-        </label>
+        <canvas id="board" width="520" height="520"></canvas>
 
-        <label>Modo impala:
-          <select id="impalaMode">
-            <option value="aleatorio" selected>Aleatorio</option>
-            <option value="programado">Programado (secuencia)</option>
-          </select>
-        </label>
-        <label id="progLabel" style="display:none">Secuencia (coma separada):
-          <input id="progSeq" placeholder="ver_frente,ver_izq,beber,...">
-        </label>
+        <div class="controls">
 
-        <div class="btnrow">
-          <button id="btnReset">Reset</button>
-          <button id="btnStep">Siguiente T</button>
-          <button id="btnRun">Ejecutar (hasta terminar)</button>
-          <button id="btnTrain">Entrenar x1000</button>
+            <label>Posición inicial del león:
+                <select id="startPos">
+                    <option value="1">1 (N)</option>
+                    <option value="2">2 (NE)</option>
+                    <option value="3">3 (E)</option>
+                    <option value="4">4 (SE)</option>
+                    <option value="5">5 (S)</option>
+                    <option value="6">6 (SW)</option>
+                    <option value="7">7 (W)</option>
+                    <option value="8">8 (NW)</option>
+                    <option value="rand" selected>Aleatoria</option>
+                </select>
+            </label>
+
+            <label>Modo del Impala:
+                <select id="impalaMode">
+                    <option value="aleatorio" selected>Aleatorio</option>
+                    <option value="programado">Programado (secuencia)</option>
+                </select>
+            </label>
+
+            <label id="progLabel" style="display:none">
+                Secuencia (coma separada):
+                <input id="progSeq" placeholder="ver_frente,ver_izq,beber,...">
+            </label>
+
+            <div class="btnrow">
+                <button id="btnReset">Reset</button>
+                <button id="btnStep">Siguiente T</button>
+                <button id="btnRun">Ejecutar (hasta terminar)</button>
+                <button id="btnTrain">Entrenar x1000</button>
+                <button id="btnStopTrain" style="display:none">Detener entrenamiento</button>
+            </div>
+
         </div>
 
-        <div class="btnrow">
-          <button id="btnShowKB">Mostrar KB</button>
-          <button id="btnSaveKB">Guardar KB</button>
-          <button id="btnLoadKB">Cargar KB</button>
-        </div>
-
-        <div class="info">
-          <strong>Estado:</strong> <span id="status">Listo</span><br>
-          <strong>Turno T:</strong> <span id="turn">0</span><br>
-          <strong>Última acción impala:</strong> <span id="lastImpala">-</span><br>
-          <strong>Última acción león:</strong> <span id="lastLion">-</span>
-        </div>
-      </div>
     </section>
 
-    <aside class="right">
-      <h2>Log / KB</h2>
-      <div id="log" class="log"></div>
+</main>
 
-      <h3>Base de Conocimiento (resumen)</h3>
-      <pre id="kbView" class="kbview"></pre>
-    </aside>
-  </main>
+<!-- Scripts -->
+<script src="js/env.js"></script>
+<script src="js/impala.js"></script>
+<script src="js/leon.js"></script>
+<script src="js/qlearning.js"></script>
+<script src="js/knowledge.js"></script>
+<script src="js/ui.js"></script>
+<script src="js/main.js"></script>
 
-  <footer>
-    <small>Hecho para el Proyecto Final — Usa "Entrenar" para simular muchas incursiones y que el león aprenda.</small>
-  </footer>
-<script src="scripts.js"></script>
 </body>
 </html>
