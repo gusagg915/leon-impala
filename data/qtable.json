@@ -1,34 +1,4 @@
-```
-
----
-
-## `data/qtable.json` (opcional)
-
-```json
-{}
-```
-
----
-
-## `README.md` (sugerido)
-
-```md
-# Simulador León vs Impala
-Proyecto para el curso — simulador que permite entrenar un león para cazar un impala usando Q-learning. Compatible con GitHub Pages.
-
-## Uso
-1. Abrir `index.html` en el navegador (o subir al repo y activar GitHub Pages).\n2. Usar botones para entrenar, ejecutar paso a paso, guardar/cargar Q-table.
-
-## Estructura
-Ver las carpetas `css/` y `js/`.
-```
-
----
-
-### Instrucciones rápidas para subir a GitHub Pages
-
-1. Crear repo `leon-impala-simulador` en GitHub.\n2. Pegar la estructura de archivos.\n3. En Settings → Pages seleccionar `main` branch y carpeta `/ (root)`.\n4. Esperar unos segundos y abrir `https://<tu-usuario>.github.io/leon-impala-simulador`.
-
----
-
-Si quieres que cree los archivos ya listos y te los empaquete (por ejemplo en un ZIP) puedo generarlos aquí para que los copies del canvas. ¿Quieres que haga eso ahora?
+{
+    "states": [],
+    "qvalues": {}
+}
